@@ -2,6 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import exercises from './assets/data/exercises.json';
 
+function ExerciseListitem({ item }) {
+  return (
+    <View style={styles.exerciseContainer}>
+      <Text style={styles.exerciseName}>{item.name}</Text>
+      <Text style={styles.exerciseSubtitle}>
+        {item.muscle.toUpperCase()} | {item.equipment.toUpperCase()}
+      </Text>
+    </View>
+  )
+}
+
 export default function App() {
 
   return (
@@ -9,14 +20,7 @@ export default function App() {
       {/* Este é um comentário dentro do retorno */}
       <FlatList
         data={exercises}
-        renderItem={({ item }) => (
-          <View style={styles.exerciseContainer}>
-            <Text style={styles.exerciseName}>{item.name}</Text>
-            <Text style={styles.exerciseSubtitle}>
-              {item.muscle.toUpperCase()} | {item.equipment.toUpperCase()}
-            </Text>
-          </View>
-        )}
+        renderItem={({ item }) => <ExerciseListitem item={item}/> }
       />
 
       <StatusBar style="auto" />
