@@ -1,13 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { Link } from 'expo-router';
 
 export default function ExerciseListitem({ item }) {
     return (
-        <View style={styles.exerciseContainer}>
-        <Text style={styles.exerciseName}>{item.name}</Text>
-        <Text style={styles.exerciseSubtitle}>
-            <Text style={styles.subValue}>{item.muscle}</Text> | <Text style={styles.subValue}>{item.equipment}</Text>
-        </Text>
-        </View>
+        // É necessário que o link seja uma propriedade dinâmica que vem do item; crases fazem com que a string vire uma template string para que isso aconteça, e que seja possível inserir um parâmetro de caminho dinâmico
+        <Link href={`/${item.name}`} asChild>
+            <Pressable style={styles.exerciseContainer}>
+                <Text style={styles.exerciseName}>{item.name}</Text>
+                <Text style={styles.exerciseSubtitle}>
+                    <Text style={styles.subValue}>{item.muscle}</Text> | <Text style={styles.subValue}>{item.equipment}</Text>
+                </Text>
+            </Pressable>
+        </Link>
     )
 }
 
